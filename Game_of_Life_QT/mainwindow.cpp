@@ -1,19 +1,41 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-
+// ---------------------------------------------------------------------------------------------------------
+//
+// Filename: mainwindow.cpp
+//
+// Description:
+// This source file contains MainWinow class for handling UI interactions and emitting
+// appropriate signals.
+//
+// Change Hisory:
+//
+//  VER          DATE            AUTHOR          DESCRIPTION
+//  1.0          18-Jun-2020     Simas V.        Initial single-threaded version.
+//  1.0.1-DEV    08-Jul-2020     Simas V.        Updated to add multi-threading capabilities:
+//                                                  - Moved calculations from MyGrid to ProcessThread
+//                                                  - Added stepSize as a private variable
+//                                                  - Added comments and formatting
+//
+// ---------------------------------------------------------------------------------------------------------
 #include <QRandomGenerator>
 #include <QTimer>
-//#include <QtWidgets>          // could be used instead of individual includes
 #include <QDateTime>
 #include <QFileDialog>
 #include <QStandardPaths>
-#include <iostream>             //temp
+
+#include "ui_mainwindow.h"
+#include "../Game_of_Life_QT/mainwindow.h"
+
+// Enforced grid dimension limits
+#define MAX_GRID_DIMENSION 10000
+#define MIN_GRID_DIMENSION 1
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    // Initial values
     timerInterval = 200;
-    timeElapsed = 0;
+    timeElapsed   = 0;
+    stepSize      = 1;
 
 } // end of MainWindow
 
@@ -21,6 +43,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow()
 {
+    if (myTimer)
+    {
+        delete myTimer;
+    }
     delete ui;
 
 } // end of ~MainWindow
@@ -31,7 +57,34 @@ void MainWindow::on_pushB_updateGrid_clicked()
 {
     int x = ui->edit_gridSize_X->text().toInt();
     int y = ui->edit_gridSize_Y->text().toInt();
-    emit GridEdited(x, y);
+
+    // Limit lower grid values to [1; 1]
+    //
+    if (MIN_GRID_DIMENSION > x)
+    {
+        ui->edit_gridSize_X->setText(QString::number(MIN_GRID_DIMENSION));
+        x = MIN_GRID_DIMENSION;
+    }
+    else if (MAX_GRID_DIMENSION < x)
+    {
+        ui->edit_gridSize_X->setText(QString::number(MAX_GRID_DIMENSION));
+        x = MAX_GRID_DIMENSION;
+    }
+
+    // Limit upper grid values to [10,000; 10,000]
+    //
+    if (MIN_GRID_DIMENSION > y)
+    {
+        ui->edit_gridSize_Y->setText(QString::number(MIN_GRID_DIMENSION));
+        y = MIN_GRID_DIMENSION;
+    }
+    else if (MAX_GRID_DIMENSION < y)
+    {
+        ui->edit_gridSize_Y->setText(QString::number(MAX_GRID_DIMENSION));
+        y = MAX_GRID_DIMENSION;
+    }
+
+    emit UpdateGridDim(x, y);
 
 } // end of on_pushB_updateGrid_clicked
 
@@ -48,6 +101,7 @@ void MainWindow::update_Grid_labels(int x, int y)
 
 void MainWindow::on_pushB_Progress1_clicked()
 {
+    emit SetGUIState(ProcessThread::Running);
     emit UpdateReq(1);
     updateTimerLabel(1);
 
@@ -57,10 +111,9 @@ void MainWindow::on_pushB_Progress1_clicked()
 
 void MainWindow::on_pushB_ProgressX_clicked()
 {
-    int steps = ui->edit_stepSize->text().toInt();
-
-    emit UpdateReq(steps);
-    updateTimerLabel(steps);
+    emit SetGUIState(ProcessThread::Running);
+    emit UpdateReq(stepSize);
+    updateTimerLabel(stepSize);
 
 } // end of on_pushB_ProgressX_clicked
 
@@ -68,8 +121,9 @@ void MainWindow::on_pushB_ProgressX_clicked()
 
 void MainWindow::on_pushB_Run_clicked()
 {
-
-    if(myTimer == nullptr)
+    // Create a new timer object (if one doesn't exist) and start it
+    //
+    if(nullptr == myTimer)
     {
         myTimer = new QTimer();
         connect(myTimer, &QTimer::timeout, this, &MainWindow::on_pushB_ProgressX_clicked);
@@ -86,6 +140,10 @@ void MainWindow::on_pushB_Run_clicked()
 
 void MainWindow::on_pushB_Stop_clicked()
 {
+    emit SetGUIState(ProcessThread::Stopped);
+
+    // Delete the timer object if one already exists
+    //
     if (myTimer)
     {
         disconnect(myTimer, &QTimer::timeout, this, &MainWindow::on_pushB_ProgressX_clicked);
@@ -98,7 +156,7 @@ void MainWindow::on_pushB_Stop_clicked()
 
 
 
-void MainWindow::on_slider_Zoom_sliderMoved(int position)
+void MainWindow::on_slider_Zoom_valueChanged(int position)
 {
     ui->myTableView->horizontalHeader()->setDefaultSectionSize(position);
     ui->myTableView->verticalHeader()->setDefaultSectionSize(position);
@@ -107,7 +165,7 @@ void MainWindow::on_slider_Zoom_sliderMoved(int position)
 
 
 
-void MainWindow::on_slider_Speed_sliderMoved(int position)
+void MainWindow::on_slider_Speed_valueChanged(int position)
 {
 
     timerInterval = position;
@@ -117,6 +175,7 @@ void MainWindow::on_slider_Speed_sliderMoved(int position)
     }
 
 } // end of on_slider_Speed_sliderMoved
+
 
 
 void MainWindow::on_Screen_CellCount_overflow()
@@ -129,8 +188,13 @@ void MainWindow::on_Screen_CellCount_overflow()
 
 void MainWindow::on_pushB_resetGrid_clicked()
 {
+    // Stop the game and emit reset request
+    //
     on_pushB_Stop_clicked();
     emit ResetGrid();
+
+    // Reset timer label
+    //
     timeElapsed = -1;
     updateTimerLabel(1);
 
@@ -140,6 +204,8 @@ void MainWindow::on_pushB_resetGrid_clicked()
 
 void MainWindow::updateTimerLabel(int steps)
 {
+    // Protect against overflow
+    //
     if (timeElapsed <= INT_MAX - steps)
     {
         timeElapsed += steps;
@@ -154,6 +220,8 @@ void MainWindow::updateTimerLabel(int steps)
 
 void MainWindow::on_edit_seed_editingFinished()
 {
+    // Reset the game and announce that the seed has changed
+    //
     on_pushB_resetGrid_clicked();
     emit SeedChanged(ui->edit_seed->text().toUInt());
 
@@ -163,6 +231,8 @@ void MainWindow::on_edit_seed_editingFinished()
 
 void MainWindow::on_pushB_RndSeed_clicked()
 {
+    // Generate new seed based on current time
+    //
     QRandomGenerator rng(QDateTime::currentMSecsSinceEpoch() / 1000);
     quint32 new_seed = rng.generate();
 
@@ -174,9 +244,17 @@ void MainWindow::on_pushB_RndSeed_clicked()
 
 
 
-void MainWindow::on_edit_stepSize_textChanged()
+void MainWindow::on_edit_stepSize_editingFinished()
 {
-    on_pushB_Stop_clicked();
+    int newSize = ui->edit_stepSize->text().toInt();
+
+    // If new step size is non-zero and changed, stop the game and update the size
+    //
+    if ((0 < newSize) && (newSize != stepSize))
+    {
+        on_pushB_Stop_clicked();
+        stepSize = newSize;
+    }
 
 } // end of on_edit_stepSize_textChanged
 
@@ -192,18 +270,23 @@ void MainWindow::on_check_Constrain_stateChanged(int state)
 
 void MainWindow::on_pushB_loadBMP_clicked()
 {
+    // Load user selected image
+    //
     QString file = QFileDialog::getOpenFileName(
                 this,
                 "Select Image",
                 QStandardPaths::writableLocation(QStandardPaths::PicturesLocation),
                 "Images (*.jpg *.png *.bmp *.gif)");
 
+    // Return if action was cancelled
+    //
     if (file.isEmpty())
         return;
 
     QImage myPicture(file);
 
     // constrain images to 500x500 pixels
+    //
     if ((myPicture.width() > 500) || (myPicture.height() > 500))
     {
         myPicture = myPicture.scaled(QSize(500,500),
@@ -213,9 +296,10 @@ void MainWindow::on_pushB_loadBMP_clicked()
     myPicture = myPicture.convertToFormat(QImage::Format_MonoLSB);
 
     on_pushB_Stop_clicked();
-    GridEdited(myPicture.width(), myPicture.height());
+
+    // Update grid size to match picture dimensions
+    //
+    UpdateGridDim(myPicture.width(), myPicture.height());
     emit ImageLoaded(myPicture);
 
 } // end of on_pushB_loadBMP_clicked
-
-

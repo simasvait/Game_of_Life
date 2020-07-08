@@ -1,16 +1,83 @@
-#include "grid.h"
+// ---------------------------------------------------------------------------------------------------------
+//
+// Filename: grid.cpp
+//
+// Description:
+// This source file contains MyGrid class used to display cells on a Tableview grid.
+//
+// Change Hisory:
+//
+//  VER          DATE            AUTHOR          DESCRIPTION
+//  1.0          18-Jun-2020     Simas V.        Initial single-threaded version.
+//  1.0.1-DEV    08-Jul-2020     Simas V.        Updated to add multi-threading capabilities:
+//                                                  - Moved calculations from MyGrid to ProcessThread
+//                                                  - Added TableData to store visible cell coordinates
+//                                                  - Added methods and signals to hangle syncronisation
+//                                                    between TableData and liveCells within ProcessThread
+//
+// ---------------------------------------------------------------------------------------------------------
 #include "ui_mainwindow.h"
-#include <QRandomGenerator>
-#include <iostream>             // temp
+#include "grid.h"
 
+// Initial grid size
+#define DEFAULT_GRID 10
 
 MyGrid::MyGrid(QObject *parent) : QAbstractTableModel(parent)
 {
-    grid_X = 50;
-    grid_Y = 50;
+    grid_X          = DEFAULT_GRID;
+    grid_Y          = DEFAULT_GRID;
     constrainToGrid = false;
+    TableData       = new bool[grid_X*grid_Y];
+
+    // Initialise TableData to zero
+    //
+    ClearTable();
 
 } // end of constructor
+
+
+
+MyGrid::MyGrid(int x, int y, QObject *parent) : QAbstractTableModel(parent)
+{
+    // Initialise to parameterised values if they are non-zero
+    if ((0 < x) && (0 < y))
+    {
+        grid_X = x;
+        grid_Y = y;
+    }
+    else
+    {
+        grid_X = DEFAULT_GRID;
+        grid_Y = DEFAULT_GRID;
+    }
+
+    constrainToGrid = false;
+    TableData       = new bool[grid_X*grid_Y];
+
+    // Initialise TableData to zero
+    //
+    ClearTable();
+
+} // end of constructor
+
+
+
+MyGrid::~MyGrid()
+{
+    delete TableData;
+
+} // end of ~MyGrid
+
+
+
+void MyGrid::ClearTable()
+{
+    for (int i = 0; i < grid_X * grid_Y; ++i)
+    {
+        TableData[i] = false;
+    }
+
+} // end of ClearTable
 
 
 
@@ -32,31 +99,44 @@ int MyGrid::columnCount(const QModelIndex & /*parent*/) const
 
 void MyGrid::setGridSize(int x, int y)
 {
-    bool updated = false; // True when grid is reset
+    bool resetModel  = false;
 
+    // Only update if value is non-zero and has changed
+    //
     if ((grid_X != x) && (0 < x))
     {
-        updated = true;
+        resetModel = true;
         beginResetModel();
         grid_X = x;
     }
-
     if ((grid_Y != y) && (0 < y))
     {
-        if (!updated)
+        if (!resetModel)
         {
-            updated = true;
+            resetModel = true;
             beginResetModel();
         }
         grid_Y = y;
     }
 
-    if (updated)
+    if (resetModel)
     {
         endResetModel();
+        emit GridChanged(grid_X, grid_Y);
     }
 
-    emit GridChanged(grid_X, grid_Y);
+    // If TableData exists, delete it and create a new one with updated size
+    //
+    if (nullptr != TableData)
+    {
+        delete TableData;
+    }
+
+    // Assume that overflow is handled in the function setting grid_X and grid_Y (for now)
+    TableData = new bool[grid_X*grid_Y];
+    ClearTable();
+
+    emit ReinitialiseData();
 
 } // end of setGrid
 
@@ -64,17 +144,21 @@ void MyGrid::setGridSize(int x, int y)
 
 QVariant MyGrid::data(const QModelIndex &index, int role) const
 {
-    // std::cout << "Role: " << role << "  Index: " << index.row() << "  " <<index.column() << std::endl;
-
-    QColor alive(34,177, 76, 255); // [R G B Alpha]
+    // Set living and dead cell colours
+    //
+    QColor alive(34,177, 76, 255); // Format: [R G B Alpha]
     QColor dead(60,60,60,255);
 
     if (role == Qt::BackgroundRole)
     {
-        if (liveCells.contains({index.row(),index.column()}))
+        if(true == TableData[index.row() * grid_X + index.column()])
+        {
             return QBrush(alive);
+        }
         else
+        {
             return QBrush(dead);
+        }
     }
     else
     {
@@ -83,258 +167,66 @@ QVariant MyGrid::data(const QModelIndex &index, int role) const
 
 } // end of data
 
-void MyGrid::progressGeneration(uint steps)
+
+
+void MyGrid::UpdateTableData (const QList<QPair<int, int>> xy_list, ProcessThread::CellOps action)
 {
-    QHash<QPair<int, int>, CellStates>::iterator it;
-    QSet<QPair<int, int>> deadCells;
-    QSet<QPair<int, int>>::iterator it_d;
-    int neighbours;
-    int x_axis, y_axis;             // Neighbourhood iterators
-    QPair<int, int> Neighbour_XY;   // Neighbour coordinates
 
-
-    for (uint i = 0; i < steps; ++i)
-    {
-        // Check all live cells
-        for (it = liveCells.begin(); it != liveCells.end(); ++it)
-        {
-            //std::cout << "Iterating through cell: " << it.key().first << "x" << it.key().second << std::endl;
-
-            // Count living neighbours
-            neighbours = -1; // -1 to discard own cell
-
-            for (x_axis = -1; x_axis <= 1; ++x_axis)
-            {
-                for (y_axis = -1; y_axis <=1; ++y_axis)
-                {
-                    Neighbour_XY = {it.key().first+x_axis, it.key().second+y_axis};
-
-                    // Check to see if cell exists in hash map
-                    if (liveCells.contains(Neighbour_XY))
-                    {
-                        // If cell exists and was alive in last generation, count as neighbour
-                        // If cell exists and was added in this generation, ignore
-                        if (liveCells[Neighbour_XY].last_state)
-                        {
-                            ++neighbours;
-                        }
-                    }
-                    // Add to dead cell set for investigation
-                    else
-                    {
-                        deadCells.insert(Neighbour_XY);
-                    }
-
-                } // end of y_axis
-
-            } // end of x_axis
-
-            // If cell is underpopulated or overpopulated, it dies
-            if ((neighbours < 2) || (neighbours > 3))
-            {
-                it->current_state = false;
-            }
-
-        } // end of live cell iterator
-
-
-        // Check all surrounding dead cells
-        for (it_d = deadCells.begin(); it_d != deadCells.end(); ++it_d)
-        {
-            // Count living neighbours
-            neighbours = 0; // 0 as its a dead cell
-
-            for (x_axis = -1; x_axis <= 1; ++x_axis)
-            {
-                for (y_axis = -1; y_axis <=1; ++y_axis)
-                {
-                    Neighbour_XY = {it_d->first+x_axis, it_d->second+y_axis};
-
-                    // Check to see if cell exists and was alive in last generation
-                    if (liveCells.contains(Neighbour_XY) && liveCells[Neighbour_XY].last_state)
-                    {
-                        ++neighbours;
-                    }
-
-                } // end of y_axis
-
-            } // end of x_axis
-
-            // If cell has 3 neighbours, resurrect
-            if (3 == neighbours)
-            {
-                liveCells.insert(*it_d,{false, true});
-                emit dataChanged(index(it_d->first,it_d->second),
-                                 index(it_d->first,it_d->second), {Qt::BackgroundRole});
-            }
-
-        } // end of dead cell iterator
-
-        // Update last_state and remove dead cells
-        it = liveCells.begin();
-
-        QPair<int, int> erasedXY;
-
-        while (it != liveCells.end())
-        {
-            //std::cout << "Cell: " << it.key().first << "x" << it.key().second;
-            if (   (!it->current_state)
-                || (constrainToGrid && (it.key().first >= grid_Y))
-                || (constrainToGrid && (it.key().first < 0))
-                || (constrainToGrid && (it.key().second >= grid_X))
-                || (constrainToGrid && (it.key().second < 0)))
-            {
-                erasedXY = it.key();
-                it = liveCells.erase(it);
-                emit dataChanged(index(erasedXY.first,erasedXY.second),
-                                 index(erasedXY.first,erasedXY.second), {Qt::BackgroundRole});
-            }
-            else
-            {
-                it->last_state = it->current_state;
-                ++it;
-            }
-
-        } // end of liveCells iterator
-
-        // ----------------------------------------------------------------
-        // DEBUG
-        /*std::cout << "\nLiveCells: ";
-        for (it = liveCells.begin(); it != liveCells.end(); ++it)
-        {
-            std::cout << it.key().first << "x" << it.key().second << " " <<std::flush;
-        }*/
-        // END OF DEBUG
-        // -------------------------------------------------------------
-
-        deadCells.clear();
-
-        emit UpdateCellCount(getCellCount());
-
-    } // end of steps iterator
-
-} // end of progressGeneration
-
-
-
-void MyGrid::initialiseGame (const QList<QPair<int, int>> &entries)
-{
     QList<QPair<int, int>>::const_iterator it;
 
-    liveCells.clear();
-
-    for (it = entries.begin(); it != entries.end(); ++it)
+    // Iterate through input list and add/remove valid (within bounds) living cells
+    //
+    for (it = xy_list.begin(); it != xy_list.end(); ++it)
     {
-        liveCells.insert(*it, {true, true});
+       int cell_idx = it->second * grid_X + it->first;
 
-    } // end of entries iterator
+       // update only if index is in range
+       //
+       if (    (it->first >= 0)
+            && (it->second >= 0)
+            && (it->first < grid_X)
+            && (it->second < grid_Y))
+       {
+           if (ProcessThread::Resurrect == action)
+           {
+               TableData[cell_idx] = true;
+               emit dataChanged(index(it->second,it->first), index(it->second,it->first), {Qt::BackgroundRole});
+           }
+           else if (ProcessThread::Kill == action)
+           {
+               TableData[cell_idx] = false;
+               emit dataChanged(index(it->second,it->first), index(it->second,it->first), {Qt::BackgroundRole});
+           }
+           else if (ProcessThread::KillAll == action)
+           {
+               // If KillAll action is triggered, clear data, update the view and exit function
+               //
+               ClearTable();
+               emit dataChanged(index(0,0), index(grid_X-1,grid_Y-1), {Qt::BackgroundRole});
+               return;
+           }
+       }
 
-    emit dataChanged(index(0, 0), index(grid_X - 1, grid_Y - 1), {Qt::BackgroundRole});
-    emit UpdateCellCount(getCellCount());
+    } // end of iterator loop
 
-} // end of initialiseGame
-
+} // end of UpdateTableData
 
 
-void MyGrid::toggleCell(const QModelIndex &index)
+
+bool MyGrid::GetTableData(int item) const
 {
-    QPair <int, int> cell = {index.row(), index.column()};
-
-    if(!liveCells.contains(cell))
+    if ((item >= 0) && (item < grid_X * grid_Y))
     {
-        liveCells.insert(cell,{true,true});
+        return TableData[item];
     }
-    else
-    {
-        liveCells.remove(cell);
-    }
+    return 0;
 
-    emit UpdateCellCount(getCellCount());
-    emit dataChanged(QAbstractTableModel::index(index.row(), index.column()),
-                     QAbstractTableModel::index(index.row(), index.column()),
-                     {Qt::BackgroundRole});
-
-} // end of toggleCell
+} // end of GetTableData
 
 
 
-int MyGrid::getCellCount() const
+bool MyGrid::GetConstrainBool() const
 {
-    return liveCells.size();
+    return constrainToGrid;
 
-} // end of getCellCount
-
-
-
-void MyGrid::clearCells()
-{
-    liveCells.clear();
-
-    emit dataChanged(index(0,0),index(grid_X - 1, grid_Y - 1),{Qt::BackgroundRole});
-    emit UpdateCellCount(getCellCount());
-
-} // end of clearCells
-
-
-
-void MyGrid::initialiseSeed(quint32 rng_seed)
-{
-    QRandomGenerator rnd(rng_seed);
-    QImage image(grid_X, grid_Y, QImage::Format_MonoLSB);
-    QVector<quint32>myVector(grid_X * grid_Y);
-    int it_X, it_Y;
-
-    rnd.fillRange(myVector.data(), myVector.size());
-
-    for (it_X=0; it_X < grid_X; ++it_X)
-    {
-        for (it_Y=0; it_Y < grid_Y; ++it_Y)
-        {
-            image.setPixel(it_X,it_Y,myVector.at(grid_X * it_X + it_Y) % 2);
-
-        } // end of it_Y iterator
-
-    } // end of it+X iterator
-
-    initialisePattern(image);
-
-} // end of initialiseSeed
-
-
-
-void MyGrid::initialisePattern(QImage image)
-{
-    QList<QPair<int, int>> startingCellPositions;
-    int it_X, it_Y;
-
-    for (it_X=0; it_X < image.width();++it_X)
-    {
-        for (it_Y=0; it_Y < image.height(); ++it_Y)
-        {
-            if (0 == (image.pixel(it_X,it_Y) & 0x01))
-            {
-                startingCellPositions.append(qMakePair(it_Y,it_X));
-            }
-
-        } // end of it_Y iterator
-
-    } // end of it_X iterator
-
-    initialiseGame(startingCellPositions);
-
-} // end of initialisePattern
-
-
-
-void MyGrid::UpdateConstraints(int state)
-{
-    if (2 == state)
-    {
-        constrainToGrid = true;
-    }
-    else
-    {
-        constrainToGrid = false;
-    }
-
-} // end of UpdateConstraints
+} // end of GetConstrainBool

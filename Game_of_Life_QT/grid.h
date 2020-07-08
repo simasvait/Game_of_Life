@@ -1,56 +1,62 @@
+// ---------------------------------------------------------------------------------------------------------
+//
+// Filename: grid.h
+//
+// Description:
+// This header file defines MyGrid class used to display cells on a Tableview grid.
+//
+// Change Hisory:
+//
+//  VER          DATE            AUTHOR          DESCRIPTION
+//  1.0          18-Jun-2020     Simas V.        Initial single-threaded version.
+//  1.0.1-DEV    08-Jul-2020     Simas V.        Updated to add multi-threading capabilities:
+//                                                  - Moved calculations from MyGrid to ProcessThread
+//                                                  - Added TableData to store visible cell coordinates
+//                                                  - Added methods and signals to hangle syncronisation
+//                                                    between TableData and liveCells within ProcessThread
+//
+// ---------------------------------------------------------------------------------------------------------
 #ifndef GRID_H
 #define GRID_H
 
 #include <QAbstractTableModel>
-#include <QImage>
 
-struct CellStates{
-    bool last_state;
-    bool current_state;
-};
+#include "../Game_of_Life_QT/processThread.h"      // added for CellOps enum definition
 
 class MyGrid : public QAbstractTableModel
 {
-    // enables meta-object features, such as dynamic properties, signals, and slots
     Q_OBJECT
 
 public:
-
-    // Constructor
+    // Constructor and destructor
     MyGrid(QObject *parent = nullptr);
+    MyGrid(int x, int y, QObject *parent = nullptr);
+    ~MyGrid();
 
-    // Methods
-    int         rowCount            (const QModelIndex &parent = QModelIndex())             const override;
-    int         columnCount         (const QModelIndex &parent = QModelIndex())             const override;
-    QVariant    data                (const QModelIndex &index, int role = Qt::DisplayRole)  const override;
-    int         getCellCount        () const;
+    // Public methods
+    int         rowCount        (const QModelIndex &parent = QModelIndex()) const override;
+    int         columnCount     (const QModelIndex &parent = QModelIndex()) const override;
+    QVariant    data            (const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    // Added for testing
+    bool        GetTableData    (int item) const;
+    bool        GetConstrainBool() const;
 
 private:
+    // Private variables
     int         grid_X;
     int         grid_Y;
     bool        constrainToGrid;
-
-    // liveCells Hash Map
-    // -------------------
-    // Key:   <int x,           int y>
-    // Value: <bool last_state, bool current_stage>
-    QHash<QPair<int, int>, CellStates> liveCells;
+    bool       *TableData;
+    // Private methods
+    void        ClearTable      ();
 
 public slots:
-    void        initialiseGame      (const QList<QPair<int, int>> &entries);
-    void        initialisePattern   (QImage image);
-    void        initialiseSeed      (quint32 rng_seed);
-    void        progressGeneration  (uint steps);
-    void        setGridSize         (int x, int y);
-    void        toggleCell          (const QModelIndex &index);
-    void        clearCells          ();
-    void        UpdateConstraints   (int state);
+    void        setGridSize     (int x, int y);
+    void        UpdateTableData (const QList<QPair<int, int>> xy_list, ProcessThread::CellOps action);
 
 signals:
-    void        GridChanged         (int newX, int newY);
-    void        UpdateCellCount     (int number);
-
-
+    void        GridChanged     (int newX, int newY);
+    void        ReinitialiseData();
 
 };
 
