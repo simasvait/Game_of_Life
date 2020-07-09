@@ -38,7 +38,7 @@ Game User Interface consists of the following features:
 * **Alive cells display**: Shows the number of alive cells for the current generation.
 
 
-##To-do list
+## To-do list
 * Improve multi-thread performance (restructure mutex locks, etc.)
 * Finish writing Unit Tests
 * Add overflow protections
