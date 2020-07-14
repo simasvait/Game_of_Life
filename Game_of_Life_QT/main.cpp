@@ -13,7 +13,7 @@
 //                                                  - Moved calculations from MyGrid to ProcessThread
 //                                                  - Added myThread and moved worker object to it
 //                                                  - Updated includes to reflect new structure
-//
+//  1.0.2-DEV    15-Jul-2020     Simas V.        Corrected initial grid size mismatch
 // ---------------------------------------------------------------------------------------------------------
 #include <QApplication>
 #include <QTableView>
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 
     QTableView *newTable = myWindow.findChild<QTableView *>("myTableView");
     QLCDNumber *lcd      = myWindow.findChild<QLCDNumber *>("Screen_CellCount");
-    MyGrid myGame(10,10);
+    MyGrid myGame(50,50);
 
     newTable->setModel(&myGame);
     newTable->setStyleSheet("gridline-color: black;");
