@@ -1,26 +1,25 @@
 // ---------------------------------------------------------------------------------------------------------
 //
-// Filename: main.cpp
+// Filename: tst_grid1.h
 //
 // Description:
-// Main function for initialising and running the unit tests.
+// Tests for MyGrid class covering grid.cpp and grid.h files.
 //
 // Change Hisory:
 //
 //  VER          DATE            AUTHOR          DESCRIPTION
-//  1.0          08-Jun-2020     Simas V.        Initial draft.
+//  1.0          08-Jul-2020     Simas V.        Initial draft.
+//  1.1          14-Jul-2020     Simas V.        Added check for data() function
 //
 // ---------------------------------------------------------------------------------------------------------
-#ifndef TST_CASE1_H
-#define TST_CASE1_H
+#ifndef TST_GRID1_H
+#define TST_GRID1_H
 
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
 
 #include "../Game_of_Life_QT/grid.h"
-//#include "../Game_of_Life_QT/mainwindow.h"
 
-#include <QDebug>
 
 using namespace testing;
 
@@ -41,13 +40,11 @@ struct MyGridTest : testing::Test
 
 TEST_F(MyGridTest, Initialise_01)
 {
-    int defaultVal = 10;
+    int defaultVal = 50;
 
     // Test Default Constructor
     EXPECT_EQ(test_grid->columnCount(), defaultVal);
     EXPECT_EQ(test_grid->rowCount(), defaultVal);
-
-    EXPECT_EQ(test_grid->GetConstrainBool(),0);
 
     for (int i = 0; i < defaultVal * defaultVal; ++i)
     {
@@ -66,8 +63,6 @@ TEST(MyGridTest2, Initialise_02)
     // Test parameterised Constructor
     EXPECT_EQ(test_grid->columnCount(), 75);
     EXPECT_EQ(test_grid->rowCount(), 43);
-
-    EXPECT_EQ(test_grid->GetConstrainBool(),0);
 
     for (int i = 0; i < x * y; ++i)
     {
@@ -102,16 +97,25 @@ TEST_F(MyGridTest, ResizeGrid)
 
 }  // end of MyGridTest/ResizeGrid
 
+#include <QAbstractItemModel>
+
 // Helper Functions
 void TestTableRange(MyGrid * grid_ptr, int grid_x, int grid_y, QList<PairInt> *list, bool match)
 {
-    int table_idx;
+    QColor  alive(34,177, 76, 255);
+    QColor  dead(60,60,60,255);
+    int     table_idx;
+    bool    cellAlive;
+
     for (int x = 0; x < grid_x; ++x)
     {
         for (int y = 0; y < grid_y;++y)
         {
             table_idx = y * grid_x + x;
-            EXPECT_EQ(grid_ptr->GetTableData(table_idx),match == list->contains({x,y}));
+            cellAlive = match == list->contains({x,y});
+            EXPECT_EQ(grid_ptr->GetTableData(table_idx),cellAlive);
+            // Check that correct colour is set
+            EXPECT_EQ(grid_ptr->data(grid_ptr->index(y,x),Qt::BackgroundRole), cellAlive ? alive : dead);
         }
     }
 
@@ -216,8 +220,7 @@ TEST_F(MyGridTest, UpdateTable_03)
 }  // end of MyGridTest/UpdateTable_03
 
 
-
 // Check resize with INT_MAX
 
 
-#endif // TST_CASE1_H
+#endif // TST_GRID1_H

@@ -14,6 +14,7 @@
 //                                                  - Added TableData to store visible cell coordinates
 //                                                  - Added methods and signals to hangle syncronisation
 //                                                    between TableData and liveCells within ProcessThread
+//  1.0.2-DEV    14-Jul-2020     Simas V.        Removed constrainToGrid (not used anymore)
 //
 // ---------------------------------------------------------------------------------------------------------
 #ifndef GRID_H
@@ -39,13 +40,11 @@ public:
     QVariant    data            (const QModelIndex &index, int role = Qt::DisplayRole) const override;
     // Added for testing
     bool        GetTableData    (int item) const;
-    bool        GetConstrainBool() const;
 
 private:
     // Private variables
     int         grid_X;
     int         grid_Y;
-    bool        constrainToGrid;
     bool       *TableData;
     // Private methods
     void        ClearTable      ();

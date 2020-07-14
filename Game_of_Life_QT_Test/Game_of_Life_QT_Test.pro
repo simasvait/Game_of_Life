@@ -12,7 +12,8 @@ CONFIG += thread
 
 
 HEADERS += \
-        tst_case1.h
+    tst_grid1.h \
+    tst_processThread1.h
 
 SOURCES += \
         main.cpp

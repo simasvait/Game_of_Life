@@ -14,19 +14,19 @@
 //                                                  - Added TableData to store visible cell coordinates
 //                                                  - Added methods and signals to hangle syncronisation
 //                                                    between TableData and liveCells within ProcessThread
+//  1.0.2-DEV    14-Jul-2020     Simas V.        Removed constrainToGrid (not used anymore)
 //
 // ---------------------------------------------------------------------------------------------------------
 #include "ui_mainwindow.h"
 #include "grid.h"
 
 // Initial grid size
-#define DEFAULT_GRID 10
+#define DEFAULT_GRID 50
 
 MyGrid::MyGrid(QObject *parent) : QAbstractTableModel(parent)
 {
     grid_X          = DEFAULT_GRID;
     grid_Y          = DEFAULT_GRID;
-    constrainToGrid = false;
     TableData       = new bool[grid_X*grid_Y];
 
     // Initialise TableData to zero
@@ -51,7 +51,6 @@ MyGrid::MyGrid(int x, int y, QObject *parent) : QAbstractTableModel(parent)
         grid_Y = DEFAULT_GRID;
     }
 
-    constrainToGrid = false;
     TableData       = new bool[grid_X*grid_Y];
 
     // Initialise TableData to zero
@@ -222,11 +221,3 @@ bool MyGrid::GetTableData(int item) const
     return 0;
 
 } // end of GetTableData
-
-
-
-bool MyGrid::GetConstrainBool() const
-{
-    return constrainToGrid;
-
-} // end of GetConstrainBool

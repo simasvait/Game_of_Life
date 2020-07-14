@@ -15,6 +15,7 @@
 //                                                  - Added QtConcurrent operations to parallelise
 //                                                    some heavy calculations
 //                                                  - Added helper functions
+//  1.0.2-DEV    14-Jul-2020     Simas V.        Added access methods for testing
 //
 // ---------------------------------------------------------------------------------------------------------
 #include <QtWidgets>
@@ -484,3 +485,28 @@ void ProcessThread::ChangeState(GUIStates newState)
     state = newState;
 
 } // end of ChangeState
+
+
+
+CellType ProcessThread::getliveCells() const
+{
+    return liveCells;
+
+} // end of getliveCells
+
+
+
+PairInt ProcessThread::getGridSize() const
+{
+    PairInt grid_size(grid_X, grid_Y);
+    return grid_size;
+
+} // end of getGridSize
+
+
+
+bool ProcessThread::getConstrainToGrid() const
+{
+    return constrainToGrid;
+
+} // end of getConstrainToGrid

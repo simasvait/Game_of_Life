@@ -15,6 +15,7 @@
 //                                                  - Added QtConcurrent operations to parallelise
 //                                                    some heavy calculations
 //                                                  - Added helper functions
+//  1.0.2-DEV    14-Jul-2020     Simas V.        Added access methods for testing
 //
 // ---------------------------------------------------------------------------------------------------------
 #ifndef PROCESSTHREAD_H
@@ -63,6 +64,10 @@ public:
 
     // Public methods
     int             getCellCount        () const;
+    // Added for testing
+    CellType        getliveCells        () const;
+    PairInt         getGridSize         () const;
+    bool            getConstrainToGrid  () const;
 
 private:
     // Private variables

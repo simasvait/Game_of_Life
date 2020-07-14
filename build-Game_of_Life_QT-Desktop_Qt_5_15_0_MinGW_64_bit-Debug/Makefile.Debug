@@ -121,12 +121,10 @@ compiler_moc_header_make_all: debug/moc_grid.cpp debug/moc_mainwindow.cpp debug/
 compiler_moc_header_clean:
 	-$(DEL_FILE) debug\moc_grid.cpp debug\moc_mainwindow.cpp debug\moc_processThread.cpp
 debug/moc_grid.cpp: ../Game_of_Life_QT/grid.h \
-		../Game_of_Life_QT/processThread.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QThread \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qthread.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnamespace.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QAbstractTableModel \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvariant.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qglobal.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qconfig-bootstrapped.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qconfig.h \
@@ -138,30 +136,29 @@ debug/moc_grid.cpp: ../Game_of_Life_QT/grid.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsysinfo.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlogging.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qflags.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmutex.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnumeric.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qversiontagging.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbasicatomic.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic_bootstrap.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qgenericatomic.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic_cxx11.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic_msvc.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qglobalstatic.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmutex.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnumeric.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qversiontagging.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstring.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qchar.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbytearray.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrefcount.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnamespace.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qarraydata.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringliteral.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringalgorithms.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringview.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringbuilder.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlist.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qalgorithms.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiterator.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstring.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qchar.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringliteral.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringview.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringbuilder.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qpair.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvector.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontainertools_impl.h \
@@ -170,14 +167,27 @@ debug/moc_grid.cpp: ../Game_of_Life_QT/grid.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringlist.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qregexp.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringmatcher.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcoreevent.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qscopedpointer.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmetatype.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmap.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdebug.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qhash.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtextstream.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiodevice.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcoreevent.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qscopedpointer.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject_impl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlocale.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qshareddata.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qset.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedpointer_impl.h \
+		../Game_of_Life_QT/processThread.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/QImage \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qimage.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtguiglobal.h \
@@ -197,26 +207,10 @@ debug/moc_grid.cpp: ../Game_of_Life_QT/grid.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpolygon.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qregion.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdatastream.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiodevice.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qline.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/QModelIndex \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvariant.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmap.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdebug.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qhash.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtextstream.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlocale.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qshareddata.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qset.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontiguouscache.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedpointer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedpointer_impl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QMutex \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/QReadWriteLock \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qreadwritelock.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QAbstractTableModel \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QSet \
 		debug/moc_predefs.h \
 		C:/Qt/5.15.0/mingw81_64/bin/moc.exe
 	C:\Qt\5.15.0\mingw81_64\bin\moc.exe $(DEFINES) --include D:/myCode/Game_of_Life/build-Game_of_Life_QT-Desktop_Qt_5_15_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/5.15.0/mingw81_64/mkspecs/win32-g++ -ID:/myCode/Game_of_Life/Game_of_Life_QT -IC:/Qt/5.15.0/mingw81_64/include -IC:/Qt/5.15.0/mingw81_64/include/QtWidgets -IC:/Qt/5.15.0/mingw81_64/include/QtGui -IC:/Qt/5.15.0/mingw81_64/include/QtANGLE -IC:/Qt/5.15.0/mingw81_64/include/QtConcurrent -IC:/Qt/5.15.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Game_of_Life_QT\grid.h -o debug\moc_grid.cpp
@@ -329,14 +323,9 @@ debug/moc_mainwindow.cpp: ../Game_of_Life_QT/mainwindow.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qicon.h \
 		../Game_of_Life_QT/processThread.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QThread \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qthread.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qelapsedtimer.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/QImage \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/QModelIndex \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QMutex \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/QReadWriteLock \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qreadwritelock.h \
 		debug/moc_predefs.h \
@@ -344,11 +333,9 @@ debug/moc_mainwindow.cpp: ../Game_of_Life_QT/mainwindow.h \
 	C:\Qt\5.15.0\mingw81_64\bin\moc.exe $(DEFINES) --include D:/myCode/Game_of_Life/build-Game_of_Life_QT-Desktop_Qt_5_15_0_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/5.15.0/mingw81_64/mkspecs/win32-g++ -ID:/myCode/Game_of_Life/Game_of_Life_QT -IC:/Qt/5.15.0/mingw81_64/include -IC:/Qt/5.15.0/mingw81_64/include/QtWidgets -IC:/Qt/5.15.0/mingw81_64/include/QtGui -IC:/Qt/5.15.0/mingw81_64/include/QtANGLE -IC:/Qt/5.15.0/mingw81_64/include/QtConcurrent -IC:/Qt/5.15.0/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\Game_of_Life_QT\mainwindow.h -o debug\moc_mainwindow.cpp
 
 debug/moc_processThread.cpp: ../Game_of_Life_QT/processThread.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QThread \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qthread.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnamespace.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/QImage \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qimage.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtguiglobal.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qglobal.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qconfig-bootstrapped.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qconfig.h \
@@ -370,45 +357,36 @@ debug/moc_processThread.cpp: ../Game_of_Life_QT/processThread.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmutex.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnumeric.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qversiontagging.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtgui-config.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qcolor.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qrgb.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnamespace.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringlist.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlist.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qalgorithms.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiterator.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrefcount.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qarraydata.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qhashfunctions.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstring.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qchar.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbytearray.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrefcount.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qarraydata.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringliteral.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringalgorithms.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringview.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringbuilder.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlist.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qalgorithms.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiterator.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qhashfunctions.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qpair.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvector.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontainertools_impl.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qpoint.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbytearraylist.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringlist.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qregexp.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringmatcher.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcoreevent.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qscopedpointer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmetatype.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvarlengtharray.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontainerfwd.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject_impl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/QImage \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qimage.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtguiglobal.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtgui-config.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qcolor.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qrgb.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qrgba64.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpaintdevice.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qwindowdefs.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs_impl.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qwindowdefs_win.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrect.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmargins.h \
@@ -419,7 +397,14 @@ debug/moc_processThread.cpp: ../Game_of_Life_QT/processThread.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpolygon.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qregion.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdatastream.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qscopedpointer.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiodevice.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcoreevent.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmetatype.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject_impl.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qline.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/QModelIndex \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractitemmodel.h \
@@ -434,7 +419,6 @@ debug/moc_processThread.cpp: ../Game_of_Life_QT/processThread.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontiguouscache.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedpointer.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedpointer_impl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QMutex \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/QReadWriteLock \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qreadwritelock.h \
 		debug/moc_predefs.h \
@@ -464,13 +448,10 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-debug/grid.o: ../Game_of_Life_QT/grid.cpp ../Game_of_Life_QT/grid.h \
-		../Game_of_Life_QT/processThread.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QThread \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qthread.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnamespace.h \
+debug/grid.o: ../Game_of_Life_QT/grid.cpp ui_mainwindow.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QVariant \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvariant.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qglobal.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qconfig-bootstrapped.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qconfig.h \
@@ -482,30 +463,29 @@ debug/grid.o: ../Game_of_Life_QT/grid.cpp ../Game_of_Life_QT/grid.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsysinfo.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlogging.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qflags.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmutex.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnumeric.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qversiontagging.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbasicatomic.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic_bootstrap.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qgenericatomic.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic_cxx11.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic_msvc.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qglobalstatic.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmutex.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnumeric.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qversiontagging.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstring.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qchar.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbytearray.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrefcount.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnamespace.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qarraydata.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringliteral.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringalgorithms.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringview.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringbuilder.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlist.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qalgorithms.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiterator.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstring.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qchar.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringliteral.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringview.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringbuilder.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qpair.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvector.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontainertools_impl.h \
@@ -514,66 +494,56 @@ debug/grid.o: ../Game_of_Life_QT/grid.cpp ../Game_of_Life_QT/grid.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringlist.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qregexp.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringmatcher.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcoreevent.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qscopedpointer.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmetatype.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontainerfwd.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject_impl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/QImage \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qimage.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtguiglobal.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtgui-config.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qcolor.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qrgb.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qrgba64.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpaintdevice.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qwindowdefs.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qwindowdefs_win.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrect.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmargins.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsize.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpixelformat.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtransform.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qmatrix.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpolygon.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qregion.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdatastream.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiodevice.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qline.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QModelIndex \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvariant.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs_impl.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmap.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdebug.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qhash.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtextstream.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiodevice.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcoreevent.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qscopedpointer.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject_impl.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlocale.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qshareddata.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qset.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontiguouscache.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedpointer.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedpointer_impl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QMutex \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QReadWriteLock \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qreadwritelock.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QAbstractTableModel \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QSet \
-		ui_mainwindow.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QVariant \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QApplication \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qapplication.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtguiglobal.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtgui-config.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtwidgets-config.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcoreapplication.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qeventloop.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qwindowdefs.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qwindowdefs_win.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsize.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmargins.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qcursor.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qdesktopwidget.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qwidget.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpaintdevice.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrect.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpalette.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qcolor.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qrgb.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qrgba64.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qbrush.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qmatrix.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpolygon.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qregion.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdatastream.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qline.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtransform.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qimage.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpixelformat.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpixmap.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qfont.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qfontmetrics.h \
@@ -603,6 +573,7 @@ debug/grid.o: ../Game_of_Life_QT/grid.cpp ../Game_of_Life_QT/grid.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractitemview.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qframe.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractitemmodel.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qitemselectionmodel.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractitemdelegate.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qstyleoption.h \
@@ -640,14 +611,17 @@ debug/grid.o: ../Game_of_Life_QT/grid.cpp ../Game_of_Life_QT/grid.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QTableView \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtableview.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QWidget \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QDebug
+		../Game_of_Life_QT/grid.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QAbstractTableModel \
+		../Game_of_Life_QT/processThread.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/QImage \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QModelIndex \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QReadWriteLock \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qreadwritelock.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\grid.o ..\Game_of_Life_QT\grid.cpp
 
-debug/mainwindow.o: ../Game_of_Life_QT/mainwindow.cpp ../Game_of_Life_QT/mainwindow.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QMainWindow \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qmainwindow.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtguiglobal.h \
+debug/mainwindow.o: ../Game_of_Life_QT/mainwindow.cpp C:/Qt/5.15.0/mingw81_64/include/QtCore/QRandomGenerator \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrandom.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qglobal.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qconfig-bootstrapped.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qconfig.h \
@@ -669,197 +643,12 @@ debug/mainwindow.o: ../Game_of_Life_QT/mainwindow.cpp ../Game_of_Life_QT/mainwin
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmutex.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnumeric.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qversiontagging.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtgui-config.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtwidgets-config.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qwidget.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qwindowdefs.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnamespace.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qwindowdefs_win.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstring.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qchar.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbytearray.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrefcount.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qarraydata.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringliteral.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringalgorithms.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringview.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringbuilder.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlist.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qalgorithms.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiterator.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qhashfunctions.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qpair.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvector.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontainertools_impl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qpoint.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbytearraylist.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringlist.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qregexp.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringmatcher.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcoreevent.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qscopedpointer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmetatype.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvarlengtharray.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontainerfwd.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject_impl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmargins.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpaintdevice.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrect.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsize.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpalette.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qcolor.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qrgb.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qrgba64.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qbrush.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qmatrix.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpolygon.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qregion.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdatastream.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiodevice.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qline.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtransform.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qimage.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpixelformat.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpixmap.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedpointer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qshareddata.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qhash.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedpointer_impl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qfont.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qfontmetrics.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qfontinfo.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qsizepolicy.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qcursor.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qkeysequence.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qevent.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvariant.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmap.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdebug.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtextstream.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlocale.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qset.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontiguouscache.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qurl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qurlquery.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfile.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfiledevice.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qvector2d.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtouchdevice.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtabwidget.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qicon.h \
-		../Game_of_Life_QT/processThread.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QThread \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qthread.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/QImage \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QModelIndex \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QMutex \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QReadWriteLock \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qreadwritelock.h \
-		ui_mainwindow.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QVariant \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QApplication \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qapplication.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qeventloop.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QCheckBox \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qcheckbox.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QGridLayout \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qgridlayout.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qlayout.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qboxlayout.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QHeaderView \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qheaderview.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qframe.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qitemselectionmodel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractitemdelegate.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qstyleoption.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractspinbox.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qvalidator.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qregularexpression.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qslider.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractslider.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qstyle.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtabbar.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qrubberband.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QLCDNumber \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qlcdnumber.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QLabel \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qlabel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QLineEdit \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qlineedit.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtextcursor.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtextformat.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpen.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtextoption.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QMenuBar \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qmenubar.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qmenu.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qaction.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qactiongroup.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QPushButton \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qpushbutton.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QSlider \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QStatusBar \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qstatusbar.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QTableView \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtableview.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QWidget \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QRandomGenerator \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrandom.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/QTimer \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtimer.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbasictimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QDateTime \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdatetime.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QFileDialog \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qfiledialog.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdir.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfileinfo.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qdialog.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QStandardPaths \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstandardpaths.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\Game_of_Life_QT\mainwindow.cpp
-
-debug/processThread.o: ../Game_of_Life_QT/processThread.cpp ../Game_of_Life_QT/processThread.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QThread \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qthread.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnamespace.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnamespace.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qglobal.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qconfig-bootstrapped.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qconfig.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtcore-config.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsystemdetection.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qprocessordetection.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcompilerdetection.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtypeinfo.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsysinfo.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlogging.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qflags.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbasicatomic.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic_bootstrap.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qgenericatomic.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic_cxx11.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic_msvc.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qglobalstatic.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmutex.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnumeric.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qversiontagging.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs_impl.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstring.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qchar.h \
@@ -888,52 +677,206 @@ debug/processThread.o: ../Game_of_Life_QT/processThread.cpp ../Game_of_Life_QT/p
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvarlengtharray.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontainerfwd.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject_impl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/QImage \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qimage.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QDateTime \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdatetime.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qshareddata.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qhash.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QFileDialog \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qfiledialog.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtguiglobal.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtgui-config.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtwidgets-config.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdir.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfileinfo.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfile.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfiledevice.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiodevice.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qurl.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qurlquery.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qdialog.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qwidget.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qwindowdefs.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qwindowdefs_win.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmargins.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpaintdevice.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrect.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsize.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpalette.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qcolor.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qrgb.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qrgba64.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpaintdevice.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qwindowdefs.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qwindowdefs_win.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrect.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmargins.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsize.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpixelformat.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtransform.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qbrush.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qmatrix.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpolygon.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qregion.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdatastream.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiodevice.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qline.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtransform.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qimage.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpixelformat.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpixmap.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedpointer_impl.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qfont.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qfontmetrics.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qfontinfo.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qsizepolicy.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qcursor.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qkeysequence.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qevent.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvariant.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmap.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdebug.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtextstream.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlocale.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qset.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qvector2d.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtouchdevice.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QStandardPaths \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstandardpaths.h \
+		ui_mainwindow.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QVariant \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QApplication \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qapplication.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qeventloop.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qguiapplication.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qinputmethod.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QCheckBox \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qcheckbox.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qicon.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QGridLayout \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qlayout.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QHeaderView \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qframe.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qvalidator.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qregularexpression.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qslider.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qstyle.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtabwidget.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QLCDNumber \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qlcdnumber.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QLabel \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qlabel.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QLineEdit \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtextcursor.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtextformat.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpen.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtextoption.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QMainWindow \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qmainwindow.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QMenuBar \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qmenu.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qaction.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qactiongroup.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QPushButton \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QSlider \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QStatusBar \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QTableView \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtableview.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QWidget \
+		../Game_of_Life_QT/mainwindow.h \
+		../Game_of_Life_QT/processThread.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/QImage \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/QModelIndex \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QReadWriteLock \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qreadwritelock.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\Game_of_Life_QT\mainwindow.cpp
+
+debug/processThread.o: ../Game_of_Life_QT/processThread.cpp C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QtWidgets \
+		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QtWidgetsDepends \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QtCore \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QtCoreDepends \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qglobal.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qconfig-bootstrapped.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qconfig.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtcore-config.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsystemdetection.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qprocessordetection.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcompilerdetection.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtypeinfo.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsysinfo.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlogging.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qflags.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbasicatomic.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic_bootstrap.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qgenericatomic.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qatomic_msvc.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmutex.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnumeric.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qversiontagging.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractanimation.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qnamespace.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstring.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qchar.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbytearray.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrefcount.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qarraydata.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringliteral.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringview.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlist.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qalgorithms.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiterator.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qpair.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvector.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontainertools_impl.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qpoint.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbytearraylist.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringlist.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qregexp.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringmatcher.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcoreevent.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qscopedpointer.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmetatype.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobject_impl.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstracteventdispatcher.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qeventloop.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractitemmodel.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvariant.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmap.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdebug.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qhash.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtextstream.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qiodevice.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlocale.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qshareddata.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qset.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcontiguouscache.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedpointer.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedpointer_impl.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QMutex \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QReadWriteLock \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qreadwritelock.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QtWidgets \
-		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QtWidgetsDepends \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QtCore \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QtCoreDepends \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractanimation.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstracteventdispatcher.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qeventloop.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractnativeeventfilter.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractproxymodel.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractstate.h \
@@ -966,6 +909,9 @@ debug/processThread.o: ../Game_of_Life_QT/processThread.cpp ../Game_of_Life_QT/p
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcoreapplication.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qconcatenatetablesproxymodel.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcryptographichash.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdatastream.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qelapsedtimer.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdir.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfileinfo.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfile.h \
@@ -998,9 +944,11 @@ debug/processThread.o: ../Game_of_Life_QT/processThread.cpp ../Game_of_Life_QT/p
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlibrary.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlibraryinfo.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qversionnumber.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qline.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlinkedlist.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlockfile.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qloggingcategory.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmargins.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmath.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmessageauthenticationcode.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmetaobject.h \
@@ -1019,6 +967,9 @@ debug/processThread.o: ../Game_of_Life_QT/processThread.cpp ../Game_of_Life_QT/p
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvariantanimation.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qqueue.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrandom.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qreadwritelock.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrect.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsize.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qresource.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsavefile.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qscopedvaluerollback.h \
@@ -1042,6 +993,7 @@ debug/processThread.o: ../Game_of_Life_QT/processThread.cpp ../Game_of_Life_QT/p
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtemporaryfile.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtextboundaryfinder.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtextcodec.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qthread.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qthreadpool.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qthreadstorage.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtimeline.h \
@@ -1057,9 +1009,17 @@ debug/processThread.o: ../Game_of_Life_QT/processThread.cpp ../Game_of_Life_QT/p
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtcoreversion.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/QtGui \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/QtGuiDepends \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtguiglobal.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtgui-config.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qabstracttextdocumentlayout.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtextlayout.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qcolor.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qrgb.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qrgba64.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qevent.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qwindowdefs.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qwindowdefs_win.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qregion.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qkeysequence.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qvector2d.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtouchdevice.h \
@@ -1067,6 +1027,12 @@ debug/processThread.o: ../Game_of_Life_QT/processThread.cpp ../Game_of_Life_QT/p
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qfont.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpen.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qbrush.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qmatrix.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpolygon.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtransform.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qimage.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpaintdevice.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpixelformat.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpixmap.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qtextoption.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qglyphrun.h \
@@ -1146,6 +1112,7 @@ debug/processThread.o: ../Game_of_Life_QT/processThread.cpp ../Game_of_Life_QT/p
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/QWindow \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/QPaintDevice \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/QOpenGLContext \
+		C:/Qt/5.15.0/mingw81_64/include/QtGui/QImage \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpagedpaintdevice.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpagelayout.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/qpagesize.h \
@@ -1329,7 +1296,9 @@ debug/processThread.o: ../Game_of_Life_QT/processThread.cpp ../Game_of_Life_QT/p
 		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentrunbase.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentstoredfunctioncall.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentversion.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QAbstractItemModel
+		../Game_of_Life_QT/processThread.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QModelIndex \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QReadWriteLock
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\processThread.o ..\Game_of_Life_QT\processThread.cpp
 
 debug/main.o: ../Game_of_Life_QT/main.cpp C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QApplication \
@@ -1460,161 +1429,22 @@ debug/main.o: ../Game_of_Life_QT/main.cpp C:/Qt/5.15.0/mingw81_64/include/QtWidg
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtabbar.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qrubberband.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/QtConcurrent \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/QtConcurrentDepends \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QtCore \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QtCoreDepends \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractanimation.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstracteventdispatcher.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractnativeeventfilter.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractproxymodel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstractstate.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qabstracttransition.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qanimationgroup.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qarraydataops.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qarraydatapointer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbasictimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbitarray.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbuffer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qbytearraymatcher.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcache.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcalendar.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcborarray.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcborvalue.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdatetime.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcborcommon.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/quuid.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcbormap.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcborstream.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcborstreamreader.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfloat16.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcborstreamwriter.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcollator.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcommandlineoption.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcommandlineparser.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qconcatenatetablesproxymodel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qcryptographichash.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdir.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfileinfo.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdiriterator.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qeasingcurve.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qendian.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qeventtransition.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qexception.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfactoryinterface.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfileselector.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QObject \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QStringList \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfilesystemwatcher.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfinalstate.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfuture.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrunnable.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qresultstore.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfuturesynchronizer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qfuturewatcher.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qhistorystate.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qidentityproxymodel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qisenum.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qjsonarray.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qjsonvalue.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qjsondocument.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qjsonobject.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlibrary.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlibraryinfo.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qversionnumber.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlinkedlist.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qlockfile.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qloggingcategory.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmath.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmessageauthenticationcode.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmetaobject.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmimedata.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmimedatabase.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qmimetype.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qobjectcleanuphandler.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qoperatingsystemversion.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qparallelanimationgroup.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qpauseanimation.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qplugin.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qpointer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qpluginloader.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qprocess.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qpropertyanimation.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qvariantanimation.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qqueue.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qrandom.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qreadwritelock.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qresource.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsavefile.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qscopedvaluerollback.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qscopeguard.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsemaphore.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsequentialanimationgroup.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsettings.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsharedmemory.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsignalmapper.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsignaltransition.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsocketnotifier.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsortfilterproxymodel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstack.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstandardpaths.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstate.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstatemachine.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstorageinfo.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qstringlistmodel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qsystemsemaphore.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtemporarydir.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtemporaryfile.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtextboundaryfinder.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtextcodec.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qthread.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qthreadpool.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qthreadstorage.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtimeline.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtimer.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtimezone.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtranslator.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtransposeproxymodel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtypetraits.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qwaitcondition.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QDeadlineTimer \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qwineventnotifier.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qxmlstream.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/qtcoreversion.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentcompilertest.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrent_global.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentexception.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentfilter.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentfilterkernel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentiteratekernel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentmedian.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentthreadengine.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentmapkernel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentreducekernel.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentfunctionwrappers.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentmap.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentrun.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentrunbase.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentstoredfunctioncall.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtConcurrent/qtconcurrentversion.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QLCDNumber \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qlcdnumber.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QThread \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qthread.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qelapsedtimer.h \
 		../Game_of_Life_QT/mainwindow.h \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/QMainWindow \
 		C:/Qt/5.15.0/mingw81_64/include/QtWidgets/qmainwindow.h \
 		../Game_of_Life_QT/processThread.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QThread \
 		C:/Qt/5.15.0/mingw81_64/include/QtGui/QImage \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/QModelIndex \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QMutex \
 		C:/Qt/5.15.0/mingw81_64/include/QtCore/QReadWriteLock \
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/qreadwritelock.h \
 		../Game_of_Life_QT/grid.h \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QAbstractTableModel \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QSet \
-		C:/Qt/5.15.0/mingw81_64/include/QtCore/QAbstractItemModel
+		C:/Qt/5.15.0/mingw81_64/include/QtCore/QAbstractTableModel
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\Game_of_Life_QT\main.cpp
 
 debug/moc_grid.o: debug/moc_grid.cpp 
